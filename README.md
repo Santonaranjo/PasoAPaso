@@ -38,7 +38,6 @@ Este documento describe los requisitos para el desarrollo de una aplicación en 
 ## 5. Tecnologías y Herramientas
 - **Lenguaje de programación:** Java
 - **Framework de interfaz gráfica:** JavaFX o Swing
-- **Base de datos:** SQLite o MySQL
 - **Sistema de gestión de versiones:** Git
 
 ## 6. Cronograma de Desarrollo

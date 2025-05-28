@@ -31,7 +31,6 @@ Este documento describe los requisitos para el desarrollo de una aplicación en 
 
 ## 4. Requisitos No Funcionales
 - La aplicación deberá ser multiplataforma y compatible con Windows, Mac y Linux.
-- Se utilizará una base de datos SQLite o MySQL para almacenar la información de hábitos.
 - El código debe ser modular y seguir buenas prácticas de programación orientada a objetos.
 - La aplicación deberá garantizar seguridad en el almacenamiento y manejo de datos.
 

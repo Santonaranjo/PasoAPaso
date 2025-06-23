@@ -126,7 +126,7 @@ public class PasoAPasoGUI extends JFrame {
         JButton viewHabitsBtn = createMenuButton("Ver Mis Hábitos", "📋");
         viewHabitsBtn.addActionListener(e -> showUserHabits());
         
-        JButton statsBtn = createMenuButton("Estadísticas", "📊");
+        JButton statsBtn = createMenuButton("Perfiles", "👩🏼‍🦱");
         JButton settingsBtn = createMenuButton("Configuración", "🛠");
         
         buttonPanel.add(addHabitBtn);

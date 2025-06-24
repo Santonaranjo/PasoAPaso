@@ -1,5 +1,4 @@
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,19 +81,55 @@ public class DatabaseManager {
     
     public User loginUser(String username, String password) {
         try {
-            String sql = "SELECT id, username FROM users WHERE username = ? AND password = ?";
+            String sql = "SELECT id, username, created_at FROM users WHERE username = ? AND password = ?";
             PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, username);
             pstmt.setString(2, password);
             ResultSet rs = pstmt.executeQuery();
             
             if (rs.next()) {
-                return new User(rs.getInt("id"), rs.getString("username"));
+                User user = new User(rs.getInt("id"), rs.getString("username"));
+                user.setCreatedAt(rs.getString("created_at"));
+                return user;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        try {
+            String sql = "SELECT id, username, created_at FROM users ORDER BY created_at DESC";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+            
+            while (rs.next()) {
+                User user = new User(rs.getInt("id"), rs.getString("username"));
+                user.setCreatedAt(rs.getString("created_at"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+    
+    public int getUserHabitsCount(int userId) {
+        try {
+            String sql = "SELECT COUNT(*) as count FROM habits WHERE user_id = ?";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, userId);
+            ResultSet rs = pstmt.executeQuery();
+            
+            if (rs.next()) {
+                return rs.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
     
     public boolean addHabit(int userId, Habit habit) {
